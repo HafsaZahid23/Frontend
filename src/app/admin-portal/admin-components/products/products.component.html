@@ -1,0 +1,194 @@
+
+<div class="container">
+  <form  (ngSubmit)="CreateProduct()" [formGroup]="ProductForm">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Product Name</label>
+          <input type="text" class="form-control" formControlName="ProductName">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Product Quantity</label>
+          <input type="number" class="form-control" formControlName="Quantity">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Product Price</label>
+          <input type="number" class="form-control" formControlName="Price">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Company Name</label>
+          <input type="text" class="form-control" formControlName="CompanyName">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <textarea class="form-control" formControlName="Description" name="" id="" rows="10"
+            placeholder="Enter Description"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Color</label>
+          <input type="text" class="form-control" formControlName="Color">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"> Logo Material</label>
+          <input type="text" class="form-control" formControlName="LogoMaterial">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Select Size</label><br>
+          <ng-container *ngFor="let data of sizeArray">
+            <input class="form-check-input" type="checkbox" [value]="data" [id]="data" (click)="GetSize($event)">
+            <label class="form-check-label mx-2" [for]="data">
+              {{data}}
+            </label>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"> Product Material</label>
+          <input type="text" class="form-control" formControlName="ProductMaterial">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+      <div class="col ">
+        <select class="form-select" aria-label="Default select example" formControlName="Category">
+          <label class="form-label">Select a category</label>
+          <option *ngFor="let data of categoryArray" [value]="data">
+            {{data}}
+          </option>
+
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input #FileSelect class="form-control input" type="file" id="formFile" multiple (change)="GetImage($event)">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+  </form>
+</div>
+
+
+<!-- <div class="container">
+  <div class="row">
+   <div class="col-md-3">
+    <div class="txt text-center">
+     <h3>Welcome To Create Product</h3>
+     <h4>You can create your product card and can live on your pages </h4>
+    <button type="button" class="btn btn-outline-dark w-50 text-white mt-3">Create Product</button>
+    </div>
+   </div>
+   <div class="col-md-9">
+     <div class="wrapper">
+     <form (ngSubmit)="ProductForm()" [formGroup]="ProductForm" >
+       <div class="row mt-5">
+        
+     <div class="col">
+    
+       <div class="form-floating mb-3">
+           <input type="text" class="form-control input" id="floatingInput" placeholder="Product Name" formControlName="productName">
+           <label for="floatingInput">Product Name</label>
+         </div>
+         <div class="form-floating mb-3">
+           <input type="number" class="form-control input" id="floatingPassword" placeholder="Product Price" formControlName="price">
+           <label for="floatingPassword">Product-Price</label>
+         </div>
+         <div class="mb-3">
+           <label class="tag"> Select-Color </label>
+         <select name="selectColor" class="form-control selectColor" id="" placeholder="selectColor" formControlName="color">
+           <option *ngFor="let data of color">{{data}}</option>
+         </select>
+       </div> 
+ 
+   </div>
+   <div class="col">
+       <div class="form-floating mb-3">
+           <input type="number" class="form-control input" id="floatingInput" placeholder="Product Quantity" formControlName="quantity">
+           <label for="floatingInput">Product-Quantity</label>
+         </div>
+         <div class="form-floating mb-3">
+           <input type="text" class="form-control input" id="floatingPassword" placeholder="Company-Name" formControlName="companyName">
+           <label for="floatingPassword">Company-Name</label>
+         </div>
+ 
+         
+         <label for="exampleInputEmail1" class="form-label">Select Size</label><br>
+          <ng-container *ngFor="let data of sizeArray">
+            <input class="form-check-input" type="checkbox" [value]="data" [id]="data" (click)="GetSize($event)">
+          <label class="form-check-label mx-2" [for]="data">
+            {{data}}
+          </label>
+          </ng-container>
+         </div>
+           
+ 
+   </div>
+ 
+
+ <div class="row">
+     <div class="col">
+       <textarea name="" class="mt-2" id="" cols="30" rows="10" formControlName="description"></textarea>
+     </div>
+ </div>
+ <div class="row">
+   <div class="col">
+ 
+ <div class="mb-3">
+   <label for="formFile" class="form-label tag">Select Images</label>
+   <input #FileSelect class="form-control input" type="file" id="formFile"  multiple (change)="GetImage($event)" >
+ </div>
+ 
+   </div>
+   <div class="col">
+     <label for="" class="tag mb-2">Select Categories</label>
+     <select class="form-select input" formControlName="category">
+       <option *ngFor="let data of categoryArray" [value]="data">{{data}}</option>
+     </select>
+   </div>
+ </div>
+ <div class="row">
+  <button type="submit" class="btn btn-primary w-100">Submit</button>
+ </div>
+ </form>
+     </div>
+   </div>
+ 
+  </div>
+ </div> -->

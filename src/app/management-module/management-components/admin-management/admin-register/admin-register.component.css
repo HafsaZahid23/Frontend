@@ -1,0 +1,21 @@
+a {
+    text-decoration: none;
+}
+.login-page {
+    width: 100%;
+    height: 100vh;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+}
+.form-right i {
+    font-size: 100px;
+}
+
+.registerimage {
+    background-image:url(https://cutewallpaper.org/22/4k-flowers-wallpapers/flower-wallpaper-kolpaper-awesome-free-hd-wallpapers.jpg);
+    height: 100vh;
+    width: 500px;
+    background-position: center;
+    background-size: cover;
+}

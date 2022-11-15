@@ -1,0 +1,17 @@
+.navbar-brand img {
+    width: 60px;
+    height: 60px;
+}
+
+.navbar1 {
+    background-color: rgb(159, 18, 81)!important;
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+h1 {
+    font-family: "Sofia", sans-serif;
+   
+}
