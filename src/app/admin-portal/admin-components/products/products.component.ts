@@ -43,7 +43,7 @@ ProductFormModel(){
   Category:new FormControl('' , [Validators.required, ]),
   Size: new FormArray([]),
   ProductMaterial:new FormControl('' , [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
-  Image: new FormArray([])
+  // Image: new FormArray([])
   })
 
 
@@ -59,15 +59,26 @@ if (event.target.checked) {
 
   GetImage(event: any) {
   
-    if (event.target.files.length <= 5) {
-       this.ImageArray.push(event.target.files);
+  //   if (event.target.files.length <= 5) {
+  //      this.ImageArray.push(event.target.files);
   
+  //   } else {
+  //     this.ImageArray = [];
+  //     this.FileSelect.nativeElement.value = null;
+  //     this.disableButtonTrue = true;
+  //     this.ToastrService.warning(`Image selection limit is 5 but you have selected ${event.target.files.length}`);
+  // }
+
+  let filesLength = event.target.files.length;
+    if (event.target.files.length <= 5) {
+      [...event.target.files].forEach((file:any) => this.ImageArray.push(file));
+      this.disableButtonTrue = false;
     } else {
       this.ImageArray = [];
       this.FileSelect.nativeElement.value = null;
       this.disableButtonTrue = true;
-      this.ToastrService.warning(`Image selection limit is 5 but you have selected ${event.target.files.length}`);
-  }
+      this.ToastrService.warning(`Image selection limit is 5 but you have selected ${filesLength}`);
+    }
 
   }
 
@@ -77,10 +88,10 @@ if (event.target.checked) {
       this.ProductForm.get("Size").push(formControl);
      })
 
-     this.ImageArray.forEach((element: any) => {
-      let formControl = new FormControl(element)
-      this.ProductForm.get("Image").push(formControl)
-    })
+    //  this.ImageArray.forEach((element: any) => {
+    //   let formControl = new FormControl(element)
+    //   this.ProductForm.get("Image").push(formControl)
+    // })
 
     let MultiPartFormData = new FormData();
 
@@ -93,7 +104,11 @@ if (event.target.checked) {
     MultiPartFormData.append('CompanyName' , this.ProductForm.get('CompanyName').value);
     MultiPartFormData.append('Size' , this.ProductForm.get('Size').value);
      MultiPartFormData.append('ProductMaterial' , this.ProductForm.get('ProductMaterial').value);
-    MultiPartFormData.append('Image' , this.ProductForm.get('Image').value);
+    // MultiPartFormData.append('Image' , this.ProductForm.get('Image').value);
+
+    this.ImageArray.forEach((ImagesData: any) => {
+      MultiPartFormData.append('images', ImagesData);//Appending values to the getData varibale from FormGroup
+    })
     
     this.ProductService.CreateProductCard(MultiPartFormData).subscribe((ResponseFromMyBackend:any) => {console.log(ResponseFromMyBackend);})
   }
